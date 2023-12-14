@@ -18,23 +18,34 @@ function calculatePythagoras(side1, side2) {
 //   `A hipotenusa de um triangulo de lados 3 e 4 é: ${calculatePythagoras(3, 4)}`
 // );
 
-const firstSideRef = document.getElementById('side-1');
-const secondSideRef = document.getElementById('side-2');
-const calculateButton = document.getElementById('calculate-hypotenuse');
-const answerDiv = document.getElementById('answer');
+const firstSidePart1Ref = document.getElementById("side-1-1");
+const firstSidePart2Ref = document.getElementById("side-1-2");
+const secondSidePart1Ref = document.getElementById("side-2-1");
+const secondSidePart2Ref = document.getElementById("side-2-2");
+const calculateButton = document.getElementById("calculate-hypotenuse");
+const answerDiv = document.getElementById("answer");
 
 function onCalculateButtonClick() {
-  const firstSide = firstSideRef.value;
-  const secondSide = secondSideRef.value;
+  const firstSide = add(firstSidePart1Ref.value, firstSidePart2Ref.value);
+  const secondSide = add(secondSidePart1Ref.value, secondSidePart2Ref.value);
   //console.log('function executed');
-  answerDiv.classList.remove('hidden-element');
-  if (!isNaN(firstSide) && !isNaN(secondSide) && firstSide > 0 && secondSide > 0) {
+  answerDiv.classList.remove("hidden-element");
+  if (
+    !isNaN(parseFloat(firstSidePart1Ref.value)) &&
+    !isNaN(parseFloat(secondSidePart1Ref.value)) &&
+    !isNaN(parseFloat(secondSidePart2Ref.value)) &&
+    !isNaN(parseFloat(firstSidePart2Ref.value)) &&
+    parseFloat(firstSidePart1Ref.value) > 0 &&
+    parseFloat(secondSidePart1Ref.value) > 0 &&
+    parseFloat(secondSidePart2Ref.value) > 0 &&
+    parseFloat(firstSidePart2Ref.value) > 0
+  ) {
     answerDiv.innerHTML = `A hipotenusa de um triangulo de lados ${firstSide} e ${secondSide} é: ${calculatePythagoras(
       firstSide,
       secondSide
     )
       .toFixed(3)
-      .replace(/[.,]000$/, '')}
+      .replace(/[.,]000$/, "")}
     <div class="left-point"></div>`;
   } else {
     answerDiv.innerHTML = `Um ou mais catetatos não possuem valores ou são menores que zero, digite novamente.
@@ -42,4 +53,9 @@ function onCalculateButtonClick() {
   }
 }
 
-calculateButton.addEventListener('click', onCalculateButtonClick);
+function add(num1, num2) {
+  const result = parseFloat(num1) + parseFloat(num2);
+  return result;
+}
+
+calculateButton.addEventListener("click", onCalculateButtonClick);
