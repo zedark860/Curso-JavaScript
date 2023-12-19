@@ -57,7 +57,7 @@ switch (usuario.time) {
 
 //ou
 
-// Isso é um operador ternário, muito útil para avaliar duas coisas, se é verdadeiro ou falso
+// Isso é um operador ternário, muito útil para avaliar uma coisa, se é verdadeiro ou falso
 //const mensagemDeBoasVindas = usuario.time === 'Fluminense' ? mensagemDeBoasVindas1 : mensagemDeBoasVindas2
 
 //console.log(mensagemDeBoasVindas)
