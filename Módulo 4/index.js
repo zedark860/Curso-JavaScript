@@ -10,6 +10,10 @@ const names = [
     'Gabriel'
 ]
 
-const index = names.indexOf('Izabelle')
+// const index = names.indexOf('Izabelle')
 
-console.log(index)
+for (persoNname of names) {
+    console.log(persoNname)
+}
+
+// of serve para arrays e in para objects
