@@ -4,20 +4,21 @@ function verificarPlaca(ultimoNum) {
     }
 
     switch (parseInt(ultimoNum)) {
-        case 0:
-            return 'O dia de rodízio em SP será Segunda'
         case 1:
-            return 'O dia de rodízio em SP será Terça'
         case 2:
-            return 'O dia de rodízio em SP será Quarta'
+            return 'O dia de rodízio em SP será Segunda'
         case 3:
-            return 'O dia de rodízio em SP será Quinta'
         case 4:
-            return 'O dia de rodízio em SP será Sexta'
+            return 'O dia de rodízio em SP será Terça'
         case 5:
-            return 'O dia de rodízio em SP será Sábado'
         case 6:
-            return 'O dia de rodízio em SP será Domingo'
+            return 'O dia de rodízio em SP será Quarta'
+        case 7:
+        case 8:
+            return 'O dia de rodízio em SP será Quinta'
+        case 9:
+        case 0:
+            return 'O dia de rodízio em SP será Sexta'
         default:
             return 'O último número da sua placa não simboliza nenhum dia da semana!'    
     }
