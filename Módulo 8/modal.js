@@ -1,10 +1,7 @@
-const overlay = document.getElementById('modal-overlay')
-const background = document.getElementById('modal-background')
-
-overlay.classList.add('open')
+const background = document.getElementById("modal-background");
 
 function backgroundClickHandler() {
-    overlay.classList.remove('open')
+  overlay.classList.remove("open");
 }
 
-background.addEventListener('click', backgroundClickHandler)
+background.addEventListener("click", backgroundClickHandler);
