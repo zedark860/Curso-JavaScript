@@ -5,7 +5,7 @@ const movieName = document.getElementById("movie-name");
 const movieYear = document.getElementById("movie-year");
 const movieListContainer = document.getElementById("movie-list");
 
-let movieList = [];
+let movieList = JSON.parse(localStorage.getItem('movieList')) ?? [];
 
 async function searchButtonClickHandler() {
   try {
@@ -13,7 +13,7 @@ async function searchButtonClickHandler() {
       key
     )}&t=${encodeURIComponent(
       movieNameParameterGenerator()
-    )}${encodeURIComponent(movieYearParameterGenerator())}`;
+    )}${movieYearParameterGenerator()}`; // encodeURIComponent, funciona apenas para valores de strings, numbers pode dar erro
     const response = await fetch(url);
     const data = await response.json();
     console.log("data :", data);
@@ -53,15 +53,44 @@ function addToList(movieObject) {
   movieList.push(movieObject);
 }
 
+function isMovieAlreadyOnList(id) {
+  function doesThisIdBelongToThisMovie(movieObject) {
+    return movieObject.imdbID === id;
+  }
+  return Boolean(movieList.find(doesThisIdBelongToThisMovie));
+}
+
 function updateUI(movieObject) {
   movieListContainer.innerHTML += `        
-  <article>
+  <article id="movie-card-${movieObject.imdbID}">
   <img
     src=${movieObject.Poster}
     alt="Poster de ${movieObject.Title}."
   />
-  <button class="remove-button"><i class="bi bi-trash"></i> Remover</button>
+  <button class="remove-button" onclick="{removeFilmFromList('${movieObject.imdbID}')}"><i class="bi bi-trash"></i> Remover</button>
 </article>`;
+}
+
+function removeFilmFromList(id) {
+  notie.confirm({
+    text: 'Deseja remover o filme de sua lista?',
+    submitText: 'Sim',
+    cancelText: 'Não',
+    position: 'top',
+    submitCallback: function remove() {
+      movieList = movieList.filter((movie) => movie.imdbID !== id);
+      document.getElementById(`movie-card-${id}`).remove();
+      updateLocalStorage();
+    },
+  })
+}
+
+function updateLocalStorage() {
+  localStorage.setItem('movieList', JSON.stringify(movieList));
+}
+
+for (const movieInfo of movieList) {
+  updateUI(movieInfo);
 }
 
 searchButton.addEventListener("click", searchButtonClickHandler);
