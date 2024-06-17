@@ -1,0 +1,17 @@
+{
+  "name": "api-stock",
+  "version": "1.0.0",
+  "description": "Api que serve pra treino e entendimento de como funciona",
+  "main": "app3.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch ."
+  },
+  "keywords": [],
+  "author": "Davi Nascimentp",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "body": "^5.1.0"
+  }
+}
